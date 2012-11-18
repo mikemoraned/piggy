@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>What</title>
+    <!-- <link rel="stylesheet" href="style.css"> -->
+    <script type="text/javascript" src="javascripts/modernizr-latest.js"></script>
+</head>
+<body>
+<script type="text/javascript">
+    var m=Modernizr;
+    for(var f in m){
+        if(f[0]=='_'){continue;}
+        var t=typeof m[f];
+        if(t=='function'){continue;}
+        document.write(f);
+        if(t=='object'){
+            document.write('-><br />');
+            for(var s in m[f]){
+                if (typeof m[f][s]=='boolean') { document.write('&nbsp; &nbsp; &nbsp; '+s+'<br />'); }
+                else { document.write('&nbsp; &nbsp; &nbsp; '+s+'<br />'); }
+            }
+        } else {
+            document.write('<br />');
+        }
+    }
+</script>
+
+</body>
+</html>
