@@ -8,8 +8,38 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <title>Piggy</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
+    <script src="/javascripts/knockout-2.2.0.js"></script>
+    <script src="/javascripts/jquery-1.8.3.min.js"></script>
 </head>
 <body>
-Foop
+<button data-bind="click: save">Didn't take the bus!</button>
+<button data-bind="click: spend, enable: canSpend">Buy a toy!</button>
+<script>
+    $(function() {
+        function Model(){
+            var toyPrice = 1500;
+            var savedUnit = 210;
+
+            var self = this;
+            self.saved = ko.observable(0);
+            self.spent = ko.observable(0);
+
+            self.canSpend = ko.computed(function() {
+                return self.saved() - self.spent() > toyPrice;
+            });
+
+            self.save = function() {
+                self.saved(self.saved() + savedUnit);
+                console.log("Saved: " + self.saved());
+            };
+
+            self.spend = function() {
+                self.spent(self.spent() + toyPrice);
+            }
+        };
+
+        ko.applyBindings(new Model());
+    });
+</script>
 </body>
 </html>
